@@ -12,7 +12,6 @@ use crate::command::ObjectType;
 const BARIUM_DIR: &str = "barium";
 const JSON_EXT: &str = "json";
 
-
 fn get_config_file_path(object_type: ObjectType) -> PathBuf {
     let directory = dirs::config_dir().expect("Could not find config directory");
     let path = object_type.to_string().to_lowercase();
@@ -38,7 +37,9 @@ fn read_config_file_str(object_type: ObjectType) -> String {
     fs::read_to_string(&path).expect("Could not read config file")
 }
 
-pub fn read_config_file<T: DeserializeOwned + Eq + Hash>(object_type: ObjectType) -> HashMap<T, usize> {
+pub fn read_config_file<T: DeserializeOwned + Eq + Hash>(
+    object_type: ObjectType,
+) -> HashMap<T, usize> {
     let s = read_config_file_str(object_type);
     let data: Vec<(T, usize)> = serde_json::from_str(&s).unwrap_or_default();
     data.into_iter().collect()

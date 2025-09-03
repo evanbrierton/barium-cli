@@ -2,7 +2,7 @@ use barium_core::{Bar, BarKind};
 use clap::Args;
 use uom::si::rational64::{Length, Mass};
 
-#[derive(Args, Copy,Clone)]
+#[derive(Args, Copy, Clone)]
 pub struct Bars {
     weight: Mass,
     gauge: Length,
@@ -16,4 +16,3 @@ impl From<Bars> for (Bar, Option<usize>) {
         (bar, bars.count)
     }
 }
-

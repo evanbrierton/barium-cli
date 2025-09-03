@@ -1,6 +1,5 @@
 #![warn(clippy::pedantic)]
 
-
 use anyhow::Ok;
 use clap::Parser;
 mod bars;

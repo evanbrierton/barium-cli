@@ -26,20 +26,14 @@ fn build_gym() -> Gym {
     let plates = expand(files::read_config_file(ObjectType::Plates));
     let bars = expand(files::read_config_file(ObjectType::Bars));
 
-    Gym::new(
-        &plates,
-        &bars,
-    )
+    Gym::new(&plates, &bars)
 }
 
-
 fn expand<T: Clone>(item: HashMap<T, usize>) -> Vec<T> {
-    item
-        .into_iter()
+    item.into_iter()
         .flat_map(|(obj, count)| repeat_n(obj, count))
         .collect()
 }
-
 
 fn execute_workout_command(requirements: &[Requirement]) -> Result<(), anyhow::Error> {
     let gym = build_gym();
