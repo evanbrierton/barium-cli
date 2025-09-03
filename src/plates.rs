@@ -1,30 +1,18 @@
 use barium_core::Plate;
 use clap::Args;
-use derivative::Derivative;
-use proc_macros::Count;
-use serde::{de::DeserializeOwned, Deserialize, Serialize};
+use uom::si::rational64::{Length, Mass};
 
-use crate::{count::Count, units, writable::Writeable};
-
-
-#[derive(Args, Copy, Clone, Deserialize, Count, Derivative)]
-#[derivative(PartialEq)]
+#[derive(Args, Copy, Clone, Debug)]
 pub struct Plates {
-  weight: f64,
-  gauge: u32,
-  #[derivative(PartialEq="ignore")]
-  count: Option<usize>,
+    weight: Mass,
+    gauge: Length,
+    count: Option<usize>,
 }
 
-impl Into<(Plate, Option<usize>)> for Plates {
-  fn into(self) -> (Plate, Option<usize>) {
-    let weight = units::kgs_to_grams(self.weight);
-    let plate = Plate::new(weight, self.gauge);
+impl From<Plates> for (Plate, Option<usize>) {
+    fn from(plates: Plates) -> Self {
+        let plate = Plate::new(plates.weight, plates.gauge);
 
-    (plate, self.count)
-  }
-}
-
-impl Writeable for Plates {
-  type WriteType = Plate;
+        (plate, plates.count)
+    }
 }

@@ -1,23 +1,34 @@
+use barium_core::Requirement;
 use clap::{Args, Subcommand};
 
-
-use strum::{Display};
+use strum::Display;
 
 use crate::{bars::Bars, plates::Plates};
 
-#[derive(Subcommand, Copy, Clone, Display)]
+#[derive(Subcommand, Clone)]
 pub enum Command {
+    Available,
+    Workout(WorkoutCommand),
     Plates(ActionCommand<Plates>),
     Bars(ActionCommand<Bars>),
 }
 
+#[derive(Display, Copy, Clone)]
+pub enum ObjectType {
+    Plates,
+    Bars,
+}
+#[derive(Args, Clone)]
+pub struct WorkoutCommand {
+    #[arg(value_parser = clap::value_parser!(Requirement))]
+    pub requirements: Vec<Requirement>,
+}
 
 #[derive(Args, Copy, Clone)]
 pub struct ActionCommand<T: Args> {
     #[command(subcommand)]
     pub action: ConfigAction<T>,
 }
-
 
 #[derive(Subcommand, Copy, Clone)]
 pub enum ConfigAction<T: Args> {

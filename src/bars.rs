@@ -1,31 +1,19 @@
-use barium_core::Bar;
+use barium_core::{Bar, BarKind};
 use clap::Args;
-use derivative::Derivative;
-use proc_macros::Count;
-use serde::{Deserialize, Serialize};
+use uom::si::rational64::{Length, Mass};
 
-use crate::{bar_kind::BarKind, count::Count, units, writable::Writeable};
-
-#[derive(Args, Copy, Clone, Serialize, Deserialize, Count, Derivative)]
-#[derivative(PartialEq)]
+#[derive(Args, Copy,Clone)]
 pub struct Bars {
-  weight: f64,
-  gauge: u32,
-  kind: BarKind,
-  #[derivative(PartialEq="ignore")]
-  count: Option<usize>,
+    weight: Mass,
+    gauge: Length,
+    kind: BarKind,
+    count: Option<usize>,
 }
-
 
 impl From<Bars> for (Bar, Option<usize>) {
-  fn from(bars: Bars) -> Self {
-    let weight = units::kgs_to_grams(bars.weight);
-    let bar = Bar::new(weight, bars.gauge, bars.kind.into());
-
-    (bar, bars.count)
-  }
+    fn from(bars: Bars) -> Self {
+        let bar = Bar::new(bars.weight, bars.gauge, bars.kind);
+        (bar, bars.count)
+    }
 }
 
-impl Writeable for Bars {
-  type WriteType = Bar;
-}
