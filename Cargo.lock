@@ -71,7 +71,7 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "c08606f8c3cbf4ce6ec8e28fb0014a2c086708fe954eaa885384a6165172e7e8"
 
 [[package]]
-name = "barium-cli"
+name = "barium"
 version = "0.1.1"
 dependencies = [
  "anyhow",
@@ -88,9 +88,9 @@ dependencies = [
 
 [[package]]
 name = "barium_core"
-version = "0.5.5"
+version = "0.5.7"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "3643b07708a16b44c03508ec17063a6a990fc0c7ffbf55ec9b0302f18e60ad22"
+checksum = "70e6c263235cc01dacd471dc7ed2d56c57f0abe35ca16ebd4fc73e33ea34b9b6"
 dependencies = [
  "derive_more",
  "itertools",
