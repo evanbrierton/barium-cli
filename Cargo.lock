@@ -71,22 +71,6 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "c08606f8c3cbf4ce6ec8e28fb0014a2c086708fe954eaa885384a6165172e7e8"
 
 [[package]]
-name = "barium"
-version = "0.1.1"
-dependencies = [
- "anyhow",
- "barium_core",
- "clap",
- "derive_more",
- "dirs",
- "itertools",
- "serde",
- "serde_json",
- "strum",
- "uom",
-]
-
-[[package]]
 name = "barium_core"
 version = "0.5.7"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -99,6 +83,22 @@ dependencies = [
  "serde",
  "strum",
  "thiserror",
+ "uom",
+]
+
+[[package]]
+name = "bariumsh"
+version = "0.1.1"
+dependencies = [
+ "anyhow",
+ "barium_core",
+ "clap",
+ "derive_more",
+ "dirs",
+ "itertools",
+ "serde",
+ "serde_json",
+ "strum",
  "uom",
 ]
 
