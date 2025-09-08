@@ -7,7 +7,7 @@ license = "MIT"
 
 [dependencies]
 anyhow = "1.0.99"
-barium_core = "0.5.7"
+barium_core = "0.5.9"
 clap = { version = "4.5.47", features = ["derive"] }
 derive_more = "2.0.1"
 dirs = "6.0.0"
