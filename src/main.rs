@@ -7,6 +7,7 @@ mod command;
 mod execute;
 mod files;
 mod plates;
+mod format;
 
 use crate::command::Command;
 

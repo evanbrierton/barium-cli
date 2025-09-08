@@ -7,9 +7,13 @@ use crate::{bars::Bars, plates::Plates};
 
 #[derive(Subcommand, Clone)]
 pub enum Command {
+    /// List all possible weights for each type of bar
     Available,
+    /// Create a workout plan based on the list of given requirements
     Workout(WorkoutCommand),
+    /// Manage available plates
     Plates(ActionCommand<Plates>),
+    /// Manage available bars
     Bars(ActionCommand<Bars>),
 }
 
@@ -32,16 +36,12 @@ pub struct ActionCommand<T: Args> {
 
 #[derive(Subcommand, Copy, Clone)]
 pub enum ConfigAction<T: Args> {
-    /// prints the current config
+    /// Show all available items
     Show,
-    /// resets the config to default values
+    /// Reset to an empty config
     Reset,
-    /// sets a config value
+    /// Add an item to the config
     Add(T),
-    /// removes a config value
-    /// if multiple plates of the same weight exist, only one will be removed
-    /// if no plate of the given weight exists, nothing will be removed
-    /// if count is given, that many plates will be removed
-    /// if count is greater than the number of plates of the given weight, all plates of that weight will be removed
+    /// Remove an item from the config, if no count is specified remove all matching items
     Remove(T),
 }

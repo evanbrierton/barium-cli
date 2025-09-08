@@ -4,11 +4,10 @@ use barium_core::{Gym, Requirement};
 use clap::Args;
 use itertools::Itertools;
 use serde::{Serialize, de::DeserializeOwned};
-use uom::si::{mass::kilogram, quantities::Mass};
 
 use crate::{
     command::{ActionCommand, Command, ConfigAction, ObjectType},
-    files,
+    files, format,
 };
 
 pub fn execute(command: Command) {
@@ -55,14 +54,7 @@ fn execute_available_command() {
     let weights = gym.weights();
 
     for (bar, weights) in weights.into_iter().sorted() {
-        println!(
-            "{}: {:?}",
-            bar,
-            weights
-                .iter()
-                .map(Mass::get::<kilogram>)
-                .collect::<Vec<_>>()
-        );
+        println!("{bar}: [{}]", weights.into_iter().dedup().map(format::mass_to_dec_string).join(", "));
     }
 }
 

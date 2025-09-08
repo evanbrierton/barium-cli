@@ -1,6 +1,6 @@
 [package]
 name = "bariumsh"
-version = "0.1.2"
+version = "0.1.3"
 edition = "2024"
 description = "Barium figures out how to optimise a workout by figuring out the optimal plates to use for each (dumb/bar)bell for each exercise."
 license = "MIT"
@@ -12,6 +12,7 @@ clap = { version = "4.5.47", features = ["derive"] }
 derive_more = "2.0.1"
 dirs = "6.0.0"
 itertools = "0.14.0"
+rational_extensions = "0.4.7"
 serde = { version = "1.0.219", features = ["derive"] }
 serde_json = "1.0.143"
 strum = { version = "0.27.2", features = ["derive"] }
