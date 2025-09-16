@@ -45,6 +45,7 @@ pub fn read_config_file<T: DeserializeOwned + Eq + Hash>(
     data.into_iter().collect()
 }
 
+
 pub fn reset_config_file<V: Serialize>(object_type: ObjectType) {
     let path = get_config_file_path(object_type);
     let empty: Vec<V> = vec![];
